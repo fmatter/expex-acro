@@ -1,0 +1,160 @@
+%\section{Introduction}
+%
+%\textsf{expex-acro}, as the name suggests, combines \textsf{expex} (for typesetting linguistic examples) with \textsf{acro} (for acronyms).
+%The two main functionalities are commands to refer to examples, and to handle glossing abbreviations.
+
+%\section{Referring to examples}
+
+\gathertags
+\lingset{everygla=}
+
+%\begin{macro}{\exref}
+%Refer to examples, e.g. |\exref{kwaza-3}|. Use |\exref[a]{b}| to get (Xa-b).
+%    \begin{macrocode}
+\providecommand{\exref}[2][]{%
+\ifthenelse{\equal{#1}{}}%
+{(\getfullref{#2})}%
+{(\getfullref{#1}--\getref{#2})}%
+}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\exrefnil}
+%Refer to examples without explicit numbers.
+%    \begin{macrocode}
+\providecommand{\exrefnil}[2][]{%
+\ifthenelse{\equal{#1}{}}{(\getref{#2})}{(\getref{#1}--\getref{#2})}%
+}
+%    \end{macrocode}
+%\end{macro}
+
+
+%\begin{macro}{\mexref}
+%For multiple, non-adjacent examples.
+%    \begin{macrocode}
+\providecommand{\mexref}[2][, ]{%
+(%
+  \def\nextitem{\def\nextitem{#1}}% Separator
+  \renewcommand*{\do}[1]{\nextitem\getfullref{##1}}% How to process each item
+  \docsvlist{#2}% Process list
+)%
+}
+%    \end{macrocode}
+%\end{macro}
+
+%\section{Glossing abbreviations}
+
+%\begin{macro}{\gl}
+%Glossing abbreviations (pre-defined or custom), which will occur in the list.
+%For example, |\gl{erg}| yields \gl{erg}.
+%    \begin{macrocode}
+\providecommand{\gl}[1]{\acs{#1}}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\newGlossingAbbrev}
+%Define a new glossing abbreviation: |\newGlossingAbbrev{occ}{occultive}|.
+%    \begin{macrocode}
+\providecommand{\newGlossingAbbrev}[2]{
+    \DeclareAcronym{#1}{
+        short=#1,
+        long=#2,
+        short-format=\scshape,
+        }
+    }
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\glossingAbbrevsList}
+%Print the list of glossing abbreviations.
+%    \begin{macrocode}
+\newcommand{\glossingAbbrevsList}{
+    \printacronyms[
+        template=glossinglist,
+        name=Glossing abbreviations,
+        heading=none
+        ]
+    }
+%    \end{macrocode}
+%\end{macro}
+
+
+%\section{Other commands useful for linguistic documents}
+%The big advantage of using something like |\obj| rather than |\textit| is that you can change how object language is displayed at any time, instead of hardcoding italics.
+
+%\begin{macro}{\obj}
+%Object language.
+%    \begin{macrocode}
+\providecommand{\obj}[1]{\textit{#1}}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\qu}
+%Translations.
+%    \begin{macrocode}
+\providecommand{\qu}[1]{‘#1’}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\rc}
+%Reconstructed forms.
+%    \begin{macrocode}
+\providecommand{\rc}[1]{*\textit{#1}}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\ort}
+%Orthographic forms.
+%    \begin{macrocode}
+\providecommand{\ort}[1]{$\langle$#1$\rangle$}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\pnt}
+%Phonetic brackets.
+%    \begin{macrocode}
+\providecommand{\pnt}[1]{[#1]}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\pnm}
+%Phonemic slashes.
+%    \begin{macrocode}
+\providecommand{\pnm}[1]{/#1/}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\dbqu}
+%Double quotation marks.
+%    \begin{macrocode}
+\providecommand{\dbqu}[1]{“#1”}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\ungr}
+%Grammatically incorrect forms.
+%    \begin{macrocode}
+\providecommand{\ungr}[1]{*\textit{#1}}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\bad}
+%Grammatically questionable forms.
+%    \begin{macrocode}
+\providecommand{\bad}[1]{?\textit{#1}}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\lxm}
+%Lexemes.
+%    \begin{macrocode}
+\providecommand{\lxm}[1]{\textsc{#1}}
+%    \end{macrocode}
+%\end{macro}
+
+%\begin{macro}{\glosstilde}
+%Nice-looking tildes for reduplication.
+%    \begin{macrocode}
+\providecommand{\glosstilde}{\char`~\kern-1ex}
+%    \end{macrocode}
+%\end{macro}
