@@ -1,0 +1,233 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2022 by Florian Matter
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3 of this license or (at your option) any later
+% version. The latest version of this license is in:
+%
+% http://www.latex-project.org/lppl.txt
+%
+% and version 1.3 or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% \fi
+% \iffalse
+%<package>\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+%<package>\ProvidesPackage{expex-acro}
+%<package>    [2022/05/17 v0.0.2 ]
+%<*package>
+%</package>
+%<*driver>
+\ProvidesFile{expex-acro.dtx}
+\documentclass{ltxdoc}
+\usepackage{showexpl}
+\lstset{%
+  basicstyle=\ttfamily\small,
+  commentstyle=\itshape\ttfamily\small,
+  showspaces=false,
+  showstringspaces=false,
+  breaklines=true,
+  breakautoindent=true,
+  captionpos=t
+}
+\usepackage{fontspec}
+\usepackage[abbrevs=leipzig]{expex-acro}
+\lingset{belowglpreambleskip=0ex,aboveglftskip=-0.2ex,aboveexskip=-0.2ex,belowexskip=-1ex}
+\usepackage{hyperref}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+ \DocInput{expex-acro.dtx}
+\end{document}
+%</driver>
+% \fi
+
+%\CheckSum{0}
+
+%\changes{v0.0.2}{2022/05/17}{Options for predefined abbreviations and exref modes.}
+%\changes{v0.0.1}{2022/04/28}{Initial release}
+
+%\GetFileInfo{expex-acro.sty}
+
+%\DoNotIndex{\#,\$,\%,\&,\@,\\,\{,\},\^,\_,\~,\ }
+%\DoNotIndex{\@ne}
+%\DoNotIndex{\advance,\begingroup,\catcode,\closein}
+%\DoNotIndex{\closeout,\day,\def,\edef,\else,\empty,\endgroup}
+%\title{The \textsf{expex-acro} package\thanks{This document
+%corresponds to \textsf{expex-acro}~\fileversion,
+%dated~\filedate.}}
+%\author{Florian Matter \\ \texttt{florianmatter@gmail.com}}
+%
+%\maketitle
+%\tableofcontents
+%\section{Introduction}
+%
+%\textsf{expex-acro}, as the name suggests, combines the \textsf{expex} (for typesetting linguistic examples) and \textsf{acro} (for acronyms) packages.
+%It provides commands for the following functionalities: referring to examples (Section \ref{sec:exref}), registering and using glossing abbreviations (Section \ref{sec:abbrevs}), and common notations in linguistics (Section \ref{sec:commands}).
+%For detailed instructions, refer to the respective documentations of \textsf{expex} and \textsf{acro}.
+%
+%Below is a multipart example typeset using \textsf{expex} and the |\gl{}| command.
+%Note that it uses two distinct labeling mechanisms, the native \textsf{expex} |<tag>| notation, and the \LaTeX{} |\label{tag}| notation.
+%Usually, you would use only one of the two in your examples.
+% \iffalse
+%<*example>
+% \fi
+\let\orilabel\label
+\begin{LTXexample}[preset=\let\label\orilabel]
+\pex<ex1> \label{ex:1}
+\a<bernese> \label{ex:bernese}
+\begingl
+\glpreamble Bernese German//
+\glpreamble \obj{üsne Vättere}//
+\gla üs-ne vätter-e//
+\glb our-\gl{dat}.\gl{pl} father.\gl{pl}-\gl{dat}.\gl{pl}//
+\glft \qu{to our fathers}//
+\endgl
+\a<latin> \label{ex:latin}
+\begingl
+\glpreamble Latin//
+\glpreamble \obj{insularum}//
+\gla insul-arum  //
+\glb island-\gl{gen};\gl{pl}//
+\glft \qu{of the islands}//
+\endgl
+\xe
+\end{LTXexample}
+% \iffalse
+%</example>
+% \fi
+%
+%\section{Referring to examples}\label{sec:exref}
+%\DescribeMacro{\exref} The |\exref| command can be used to refer to examples in text.
+%The package option |refmode| determines how |\exref| will behave:
+% \iffalse
+%<*example>
+% \fi
+To use the built-in tag system (default):
+\begin{lstlisting}
+\usepackage[refmode=expex]{expex-acro}
+\end{lstlisting}
+To use \LaTeX{} |\label|s:
+\begin{lstlisting}
+\usepackage[refmode=latex]{expex-acro}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%\subsection{Using native \texttt{expex} tags}
+% \textsf{expex} has its own tag system, e.g.\ |<ex1>| in \exref{ex1} above.
+% The corresponding usage is |\exref|\oarg{id1}\marg{id2}.
+% Note that when using the \textsf{expex} mechanism, subexamples need to be referred to by their |\pex|'s tag and a period:
+% \iffalse
+%<*example>
+% \fi
+\begin{LTXexample}
+\exref{ex1}, \exref{ex1.bernese}, and \exref{ex1.latin}.
+\end{LTXexample}
+% \iffalse
+%</example>
+% \fi
+% If an optional argument is given, |\exref| will assume that these are two examples in a range:
+% \iffalse
+%<*example>
+% \fi
+\begin{LTXexample}
+\exref[ex1.bernese]{ex1.latin}
+\end{LTXexample}
+% \iffalse
+%</example>
+% \fi
+%\subsection{Using \LaTeX{} labels}
+%\RenewDocumentCommand{\exref}{ o m }{
+%        \IfValueTF{#1} {(\ref{#2}#1)}{(\ref{#2})}}
+% The alternative is to use the usual \LaTeX{} |\label| commands in your examples, like |\label{ex:1}| in \exref{ex:1} above.
+% The corresponding usage is |\exref|\oarg{range}\marg{id}.
+% In this mode, one can directly refer to subexamples:
+% \iffalse
+%<*example>
+% \fi
+\begin{LTXexample}
+\exref{ex:1}, \exref{ex:bernese}, and \exref{ex:latin}.
+\end{LTXexample}
+% \iffalse
+%</example>
+% \fi
+%The optional argument is simply inserted after the mandatory argument; ranges of subexamples can be done this way.
+% \iffalse
+%<*example>
+% \fi
+\begin{LTXexample}
+\exref[a--b]{ex:1}
+\end{LTXexample}
+% \iffalse
+%</example>
+% \fi
+%\section{Glossing abbreviations}\label{sec:abbrevs}
+%\textsf{expex-acro} loads the \textsf{acro} package for defining glossing abbreviations, displaying them in running text, and printing a list of the ones used.
+%\subsection{Package options}
+%\DescribeMacro{abbrevs}
+% By default, \textsf{expex-acro} loads no pre-defined glossing abbreviations.
+% This can be changed by using either
+% \iffalse
+%<*example>
+% \fi
+\begin{lstlisting}
+\usepackage[abbrevs=leipzig]{expex-acro}
+\end{lstlisting}
+or
+\begin{lstlisting}
+\usepackage[abbrevs=all]{expex-acro}
+\end{lstlisting}
+% \iffalse
+%</example>
+% \fi
+%Note that the current version of \textsf{acro} becomes significantly slower when loading long abbreviation lists (\url{https://github.com/cgnieder/acro/issues/205}).
+%Thus, there is a trade-off between having to manually define every glossing abbreviation you use, and speed. 
+%\subsection{Commands}
+%\DescribeMacro{\newGlossingAbbrev} Define a new glossing abbreviation.
+% Usage: |\newGlossingAbbrev|\marg{key}\marg{meaning}.
+%Example: |\newGlossingAbbrev{occ}{occultive}|.\\
+%\DescribeMacro{\gl} Render a glossing abbreviation.
+% Usage: |\gl|\marg{key}.
+%Example: |\gl{occ}|.\\
+%\DescribeMacro{\glossingAbbrevsList} Print list of used glossing abbreviations.
+% Usage: |\glossingAbbrevsList|. Demo:
+% \iffalse
+%<*example>
+% \fi
+\begin{LTXexample}
+\glossingAbbrevsList
+\end{LTXexample}
+% \iffalse
+%</example>
+% \fi
+%\section{Semantic commands for linguistic texts}\label{sec:commands}
+%An oft-cited advantage of using \LaTeX{} is the separation of content and formatting.
+%That principle is broken by using things like |\textit| for object language.
+%Of course, italics are a wide-spread standard, but what if you need or want to change how object language is displayed for some reason?
+%Apart from |\gl| for glosses, the following commands are built into \textsf{expex-acro}:
+% \iffalse
+%<*example>
+% \fi
+\begin{LTXexample}
+\begin{enumerate}
+\item \obj{xats} (object language)
+\item \qu{cat} (free translation)
+\item \rc{katta} (reconstructed form)
+\item \ort{Chatz} (orthographic representation)
+\item \lxm{chatz} (lexeme)
+\end{enumerate}
+\end{LTXexample}
+% \iffalse
+%</example>
+% \fi
+% \StopEventually{^^A
+% \PrintChanges
+% \PrintIndex}
+% \section{Implementation}
+<<CODE_CONTENT>>
+% \Finale
+\endinput

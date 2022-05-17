@@ -1,108 +1,67 @@
 Abbreviation,Meaning
-1,first person
 1+2,first and second person
 1+3,first and third person
-2,second person
-3,third person
-A,agentive transitive argument
-atten,attenuative
-abl,ablative
 abort,abortive
-abs,absolutive
-acc,accusative
 act,Actor
 ade,adessive
-adj,adjective
 adjz,adjectivizer
+adm,admonitive
 adp,adposition
-adv,adverb(ial)
 advz,adverbalizer
 aff,affirmative
-ptv,partitive
-ela,elative
-ess,essive
-agr,agreement
 agt,agent
-all,allative
 ana,anaphoric
 and,andative
-plup,pluperfect
-imperf,imperfect
 anim,animate
 antiappl,antiapplicative
 antic,anticausative
-antip,antipassive
-appl,applicative
-art,article
 asp,aspect
 ass,associative
+atten,attenuative
 attr,attributive
 attrz,attributivizer
 aug,augmentative
-aux,auxiliary
 av,actor voice
-ben,benefactive
 cap,(cap-)ability
-caus,causative
 cert,certainty
 cess,cessative
 circ,circumstantial
 cisl,cislocative
 cit,citation form
-clf,classifier
 cntr,contrastive
 col,collective
-com,comitative
-comp,complementizer
 compr,comparative
 conc,concessive
-cond,conditional
 cont,continuative
-narr,narrative
-cop,copula
 cor,coreference
 cpl,completive
-cvb,converb
-dat,dative
-decl,declarative
-prob,probability
-def,definite
 dei,deixis/deictic
-dem,demonstrative
 denmlz,denominalizer
 dep,dependent
 des,desiderative
-det,determiner
 detrz,detransitivizer
 dim,diminutive
 dir,direct
-dist,distal
-distr,distributive
 ditr,ditransitive
 dm,discourse marker
+do,direct object
 ds,different subject
-du,dual
 dub,dubitative
-dur,durative
+ela,elative
 emp,emphatic
 ep,epenthetic
 epis,epistemic mood
-erg,ergative
+ess,essive
 evid,evidentiality
-excl,exclusive
 exist,existential
 exp,experiental or direct evidentiality
 eyewit,eyewitness
-f,feminine
 fam,familiar register
 fin,finite
-foc,focus
 form,formal register
 freq,frequentative
 frust,frustrative
-fut,future
 g,gender
-gen,genitive
 ger,gerund
 gno,gnomic
 goal,goal
@@ -111,123 +70,90 @@ hest,hesternal past
 hist,historical past
 hod,hodiernal past
 hon,honorative
-imm,immediate past
 hort,hortative
 hsy,hearsay/indirect evidentiality
 hum,human
+hyp,hypothetical
 ideo,ideophone
+ignor,ignorative
 ill,illative
-adm,admonitive
-imp,imperative
+imm,immediate past
+imperf,imperfect
 imprs,impersonal
+inal,inalienable
 inan,inanimate
 inch,inchoative
-incl,inclusive
 incpl,incompletive
-ind,indicative
-indf,indefinite
 ine,inessive
-inf,infinitive
 infr,inferred/conjectured evidentiality
-ins,instrumental
 int,intermediate past
 inten,intentional
 interj,interjection
-intr,intransitive
 ints,intensifier
 inv,inverse
 invis,invisible
-ipfv,imperfective
-irr,irrealis
+io,indirect object
 iter,iterative
 jus,jussive
 lat,lative
 lk,linker
-loc,locative
-m,masculine
 med,medial
-ignor,ignorative
 mid,middle
 min,minimal
 mir,(ad)mirative
 mod,modal
 motimp,motional imperative
 mvt,movement
-n,neuter
+narr,narrative
 ncor,non-coreference
-neg,negation
 nfut,non-future
 nhum,non-human
-nmlz,nominalizer
-rev,reversative
-nom,nominative
 nonf,nonfinite
+nposs,unpossessed
 npst,non-past
 nrec,non-recent past
 nsg,non-singular
 nspec,non-specific
-obj,object
-obl,oblique
 obv,obviative
-P,patientive transitive argument
+opt,optative
 part,particle
-pass,passive
 pat,patient
 pauc,paucal
 pej,pejorativre
 per,perlative
-pert,pertensive
 perm,permissive
-pfv,perfective
-pl,plural
+pert,pertensive
+plup,pluperfect
 pnct,punctual
+po,primary object
 pol,polite
 posimp,positional imperative
-poss,possessive
 poste,postessive
 postp,postposition
 pot,potential
-pred,predicative
 prep,preposition
-prf,perfect
 priv,privative
 pro,pronoun
-prog,progressive
-proh,prohibitive
+prob,probability
 pros,prosecutive
-prox,proximal
-tns,tense
-opt,optative
-nposs,unpossessed
-hyp,hypothetical
-prs,present
-pst,past
-ptcp,participle
-purp,purposive
-q,question particle/marker
-quot,quotative
+ptv,partitive
 R,recipient-like argument in ditransitive clause
 real,realis
 reas,reason
 rec,recent past
-recp,reciprocal
 ref,referential
-refl,reflexive
 reit,reiterative
-rel,relative
 rem,remote past
 rep,repetitive
-res,resultative
 resum,resumptive
-inal,inalienable
-S,intransitive argument
+rev,reversative
+S_A_,S marked like A
+S_P_,S marked like P
 sap,speech act participant
-sbj,subject
-sbjv,subjunctive
 sem,semelfactive
 seq,sequential
-sg,singular
 sim,similative
+so,secondary object
 spec,specifier
 src,source
 ss,same subject
@@ -235,14 +161,11 @@ stat,stative
 subr,subordinator
 sup,supine
 supl,superlative
-S_A_,S marked like A
-S_P_,S marked like P
 T,theme-like argument in ditransitive clause
 tel,telic
 temp,temporal
 term,terminative
-top,topic
-tr,transitive
+tns,tense
 transl,translative
 trl,trial
 trz,transitivizer
@@ -252,10 +175,5 @@ uv,undergoer voice
 v,verb(al)
 vbz,verbalizer
 ven,venitive
-vis,visible
-voc,vocative
-do,direct object
-io,indirect object
-po,primary object
-so,secondary object
 vet,vetative
+vis,visible

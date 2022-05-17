@@ -1,9 +1,50 @@
-%\section{Introduction}
-%
-%\textsf{expex-acro}, as the name suggests, combines \textsf{expex} (for typesetting linguistic examples) with \textsf{acro} (for acronyms).
-%The two main functionalities are commands to refer to examples, and to handle glossing abbreviations.
+%    \begin{macrocode}
+\RequirePackage{expex}
+\RequirePackage{etoolbox}
+\RequirePackage{xspace}
+\RequirePackage{l3keys2e}
+\RequirePackage{acro}
+\RequirePackage{enumitem}
 
-%\section{Referring to examples}
+\NewAcroTemplate[list]{glossinglist}{%
+ \acroheading
+ \acropreamble
+ \begin{description}[font=\normalfont]
+   \acronymsmapF{%
+     \item[\acrowrite{short}\acroifT{alt}{/\acrowrite{alt}}]
+     \acrowrite{list}%
+     \acroifanyT{foreign,extra}{ (}%
+     \acroifT{foreign}{\acrowrite{foreign}\acroifT{extra}{, }}%
+     \acroifT{extra}{\acrowrite{extra}}%
+     \acroifanyT{foreign,extra}{)}%
+     \acropagefill
+     \acropages
+     {\acrotranslate{page}\nobreakspace}
+     {\acrotranslate{pages}\nobreakspace}%
+   }
+   {\item\AcroRerun}
+ \end{description}
+}
+
+\ExplSyntaxOn
+\keys_define:nn { expex-acro }{
+  abbrevs .tl_set:N = \l_abbrevs_tl,
+  abbrevs .initial:n = none,
+  refmode .tl_set:N = \l_refmode_tl,
+  refmode .initial:n = expex,
+}
+\ProcessKeysOptions{expex-acro}
+\str_if_eq:VnT \l_abbrevs_tl {leipzig} {
+<<LEIPZIG_PLACEHOLDER>>
+} 
+\str_if_eq:VnT \l_abbrevs_tl {all} {
+<<LEIPZIG_PLACEHOLDER>>
+%BREAK
+<<ABBREV_PLACEHOLDER>>
+}
+\ExplSyntaxOff
+%    \end{macrocode}
+
 
 \gathertags
 \lingset{everygla=}
@@ -11,19 +52,38 @@
 %\begin{macro}{\exref}
 %Refer to examples, e.g. |\exref{kwaza-3}|. Use |\exref[a]{b}| to get (Xa-b).
 %    \begin{macrocode}
-\providecommand{\exref}[2][]{%
-\ifthenelse{\equal{#1}{}}%
-{(\getfullref{#2})}%
-{(\getfullref{#1}--\getref{#2})}%
+\ExplSyntaxOn
+\str_if_eq:VnTF \l_refmode_tl {expex} {
+    \ProvideDocumentCommand{\exref}{ o m }{
+        \IfValueTF{#1} {
+            (\getfullref{#1}--\getref{#2})
+        }{
+            (\getfullref{#2})
+        }
+    }
+} {
+    \ProvideDocumentCommand{\exref}{ o m }{
+        \IfValueTF{#1} {
+            (\ref{#2}#1)
+        }{
+            (\ref{#2})
+        }
+        
+    }
 }
+
 %    \end{macrocode}
 %\end{macro}
 
 %\begin{macro}{\exrefnil}
 %Refer to examples without explicit numbers.
 %    \begin{macrocode}
-\providecommand{\exrefnil}[2][]{%
-\ifthenelse{\equal{#1}{}}{(\getref{#2})}{(\getref{#1}--\getref{#2})}%
+\ProvideDocumentCommand{\exrefnil}{ o m }{
+\IfValueTF{#1} {
+    (\getref{#1}--\getref{#2})
+}{
+    (\getref{#2})
+}
 }
 %    \end{macrocode}
 %\end{macro}
@@ -42,11 +102,7 @@
 %    \end{macrocode}
 %\end{macro}
 
-%\section{Glossing abbreviations}
-
 %\begin{macro}{\gl}
-%Glossing abbreviations (pre-defined or custom), which will occur in the list.
-%For example, |\gl{erg}| yields \gl{erg}.
 %    \begin{macrocode}
 \providecommand{\gl}[1]{\acs{#1}}
 %    \end{macrocode}
@@ -78,10 +134,6 @@
 %    \end{macrocode}
 %\end{macro}
 
-
-%\section{Other commands useful for linguistic documents}
-%The big advantage of using something like |\obj| rather than |\textit| is that you can change how object language is displayed at any time, instead of hardcoding italics.
-
 %\begin{macro}{\obj}
 %Object language.
 %    \begin{macrocode}
@@ -99,7 +151,7 @@
 %\begin{macro}{\rc}
 %Reconstructed forms.
 %    \begin{macrocode}
-\providecommand{\rc}[1]{*\textit{#1}}
+\newcommand{\rc}[1]{*\textit{#1}}
 %    \end{macrocode}
 %\end{macro}
 
@@ -149,12 +201,5 @@
 %Lexemes.
 %    \begin{macrocode}
 \providecommand{\lxm}[1]{\textsc{#1}}
-%    \end{macrocode}
-%\end{macro}
-
-%\begin{macro}{\glosstilde}
-%Nice-looking tildes for reduplication.
-%    \begin{macrocode}
-\providecommand{\glosstilde}{\char`~\kern-1ex}
 %    \end{macrocode}
 %\end{macro}
