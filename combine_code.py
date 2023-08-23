@@ -26,7 +26,7 @@ def acro3gl(entry):
     return (
         "\\DeclareAcronym{%s}{short=%s,long=%s,short-format=\\scshape}"
         % (
-            entry["Abbreviation"].lower(),
+            entry["Abbreviation"].lower().replace("_", ""),
             underscorify(entry["Abbreviation"]),
             entry["Meaning"].replace(" ", "~"),
         )
@@ -37,7 +37,7 @@ def acro2gl(entry):
     return (
         "\\DeclareAcronym{%s}{short=%s,long=%s,short-format=\\scshape,class=gloss}"
         % (
-            entry["Abbreviation"].lower(),
+            entry["Abbreviation"].lower().replace("_", ""),
             underscorify(entry["Abbreviation"]),
             entry["Meaning"],
         )

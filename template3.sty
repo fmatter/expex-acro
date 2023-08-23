@@ -62,11 +62,20 @@
         }
     }
 } {
-    \ProvideDocumentCommand{\exref}{ o m }{
+    \ProvideDocumentCommand{\exref}{ o o m }{
         \IfValueTF{#1} {
-            (\ref{#2}#1)
+            \IfValueTF{#2} {
+                (\ref{#3}-\ref{#2}#1)
+            }{
+                (\ref{#3}#1)
+            }
         }{
-            (\ref{#2})
+            \IfValueTF{#2} {
+                (\ref{#3}-\ref{#2})
+            }{
+                (\ref{#3})
+            }
+            
         }
         
     }

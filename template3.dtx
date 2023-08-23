@@ -47,6 +47,7 @@
 
 %\CheckSum{0}
 
+%\changes{v0.0.3}{2022/XX/XX}{More versatile exref command in LaTeX label mode; removed underscores from abbreviations.}
 %\changes{v0.0.2}{2022/05/17}{Options for predefined abbreviations and exref modes.}
 %\changes{v0.0.1}{2022/04/28}{Initial release}
 
@@ -144,7 +145,7 @@ To use \LaTeX{} |\label|s:
 %\RenewDocumentCommand{\exref}{ o m }{
 %        \IfValueTF{#1} {(\ref{#2}#1)}{(\ref{#2})}}
 % The alternative is to use the usual \LaTeX{} |\label| commands in your examples, like |\label{ex:1}| in \exref{ex:1} above.
-% The corresponding usage is |\exref|\oarg{range}\marg{id}.
+% The corresponding usage is |\exref|\oarg{range}\oarg{id2}\marg{id}.
 % In this mode, one can directly refer to subexamples:
 % \iffalse
 %<*example>
@@ -155,7 +156,7 @@ To use \LaTeX{} |\label|s:
 % \iffalse
 %</example>
 % \fi
-%The optional argument is simply inserted after the mandatory argument; ranges of subexamples can be done this way.
+%The first optional argument is simply inserted after the mandatory argument; ranges of subexamples can be done this way.
 % \iffalse
 %<*example>
 % \fi
@@ -165,6 +166,7 @@ To use \LaTeX{} |\label|s:
 % \iffalse
 %</example>
 % \fi
+% The second optional argument is interpreted as the start of an example range, ending with the mandatory argument.
 %\section{Glossing abbreviations}\label{sec:abbrevs}
 %\textsf{expex-acro} loads the \textsf{acro} package for defining glossing abbreviations, displaying them in running text, and printing a list of the ones used.
 %\subsection{Package options}
